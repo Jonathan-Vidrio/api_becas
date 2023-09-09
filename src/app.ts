@@ -7,6 +7,9 @@ import cors from "cors";
 // Create Express server
 const app = express();
 
+import { createRoles } from "./libs/initialSetup";
+createRoles();
+
 // Middlewares
 app.use(cors({
     credentials: true,

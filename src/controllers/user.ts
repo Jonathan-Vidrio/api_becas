@@ -1,4 +1,4 @@
-import express from "express";
+import { Request, Response} from "express";
 import UserModel from "../models/User";
 
 /*
@@ -13,7 +13,7 @@ STATUS CODES
 500: Internal Server Error
 */
 
-const getAllUsers = async (req: express.Request, res: express.Response) => {
+const getAllUsers = async (req: Request, res: Response) => {
     try {
         const users = await UserModel.find();
         return res.status(200).json(users);
@@ -22,7 +22,7 @@ const getAllUsers = async (req: express.Request, res: express.Response) => {
     };
 };
 
-const getUserById = async (req: express.Request, res: express.Response) => {
+const getUserById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
         const user = await UserModel.findById(id);
@@ -32,7 +32,7 @@ const getUserById = async (req: express.Request, res: express.Response) => {
     };
 };
 
-const createUser = async (req: express.Request, res: express.Response) => {
+const createUser = async (req: Request, res: Response) => {
     try {
 
     } catch (error) {
@@ -40,7 +40,7 @@ const createUser = async (req: express.Request, res: express.Response) => {
     }
 };
 
-const updateUsername = async (req: express.Request, res: express.Response) => {
+const updateUsername = async (req: Request, res: Response) => {
     try {
 
     } catch (error) {
@@ -48,7 +48,7 @@ const updateUsername = async (req: express.Request, res: express.Response) => {
     }
 };
 
-const updateUserPassword = async (req: express.Request, res: express.Response) => {
+const updateUserPassword = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
         const { password } = req.body;
@@ -68,7 +68,7 @@ const updateUserPassword = async (req: express.Request, res: express.Response) =
     }
 };
 
-const updateUserEmail = async (req: express.Request, res: express.Response) => {
+const updateUserEmail = async (req: Request, res: Response) => {
     try {
 
     } catch (error) {
@@ -76,7 +76,7 @@ const updateUserEmail = async (req: express.Request, res: express.Response) => {
     }
 }
 
-const deleteUser = async (req: express.Request, res: express.Response) => {
+const deleteUser = async (req: Request, res: Response) => {
     try {
 
     } catch (error) {
@@ -84,7 +84,7 @@ const deleteUser = async (req: express.Request, res: express.Response) => {
     }
 };
 
-export {
+export const userController = {
     getAllUsers,
     getUserById,
     //createUser,
