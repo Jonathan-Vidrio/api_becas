@@ -1,6 +1,7 @@
 import { app } from "./app";
 import http from "http";
 import { serverConfig } from "./config";
+import "./database/connection"
 
 const main = () => {
     const server = http.createServer(app);
