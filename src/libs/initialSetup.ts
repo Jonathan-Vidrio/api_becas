@@ -1,4 +1,4 @@
-import Role from '../models/Role';
+import Role from '../models/role.model';
 
 const createRoles = async () => {
     try {
@@ -8,7 +8,7 @@ const createRoles = async () => {
         const roles = [
             { name: 'scholar' },
             { name: 'moderator' },
-            { name: 'admin' }
+            { name: 'admin' },
         ];
 
         const savedRoles = await Promise.all(roles.map(role => new Role(role).save()));
@@ -19,5 +19,5 @@ const createRoles = async () => {
 };
 
 export {
-    createRoles
+    createRoles,
 };

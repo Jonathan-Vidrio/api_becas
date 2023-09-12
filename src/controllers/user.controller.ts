@@ -1,5 +1,6 @@
 import { Request, Response} from "express";
-import UserModel from "../models/User";
+import User from "../models/user.model";
+import { IUser } from "../interface/user.interface";
 
 /*
 STATUS CODES
@@ -15,7 +16,7 @@ STATUS CODES
 
 const getAllUsers = async (req: Request, res: Response) => {
     try {
-        const users = await UserModel.find();
+        const users = await User.find();
         return res.status(200).json(users);
     } catch (error) {
         return res.status(500).json(error);
@@ -24,9 +25,7 @@ const getAllUsers = async (req: Request, res: Response) => {
 
 const getUserById = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
-        const user = await UserModel.findById(id);
-        return res.status(200).json(user);
+
     } catch (error) {
         return res.status(500).json(error);
     };
@@ -34,7 +33,9 @@ const getUserById = async (req: Request, res: Response) => {
 
 const createUser = async (req: Request, res: Response) => {
     try {
-
+        const user = new User(req.body);
+        const savedUser = await user.save();
+        return res.status(201).json(savedUser);
     } catch (error) {
         return res.status(500).json(error);
     }
@@ -50,18 +51,6 @@ const updateUsername = async (req: Request, res: Response) => {
 
 const updateUserPassword = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
-        const { password } = req.body;
-
-        if (!password) {
-            return res.status(400).json({ message: "Password is required" });
-        }
-
-        const updatedUser = await UserModel.findByIdAndUpdate(id, {
-            password
-        });
-
-        return res.status(200).json(updatedUser);
 
     } catch (error) {
         return res.status(500).json(error);

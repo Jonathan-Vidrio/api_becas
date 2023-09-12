@@ -1,13 +1,15 @@
 import express from "express";
 import bodyParser from "body-parser";
-import cookieParser from "cookie-parser";
 import compression from "compression";
 import cors from "cors";
+
+import { createRoles } from "./libs/initialSetup";
+
+import router from "./router";
 
 // Create Express server
 const app = express();
 
-import { createRoles } from "./libs/initialSetup";
 createRoles();
 
 // Middlewares
@@ -16,8 +18,9 @@ app.use(cors({
 }));
 
 app.use(compression());
-app.use(cookieParser());
 app.use(bodyParser.json());
+
+app.use("/api", router());
 
 export {
     app,
